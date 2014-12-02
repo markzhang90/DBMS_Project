@@ -1,11 +1,13 @@
 package ConnectDB;
 
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Query {
+public class Query<T> {
 	connectDB db;
 	java.sql.Statement sqlStmt;
 
@@ -173,7 +175,42 @@ public class Query {
 
 	}
 
+  public ResultSet getfun1() throws SQLException{
+	  ResultSet r1 = null;
+	  String query = "select count(distinct(A.paperid)),OM.Orgnization from article AS A, member AS M, orgnizationmap AS OM where A.Nameid=M.Nameid and M.Orgid=OM.Oid and A.Year='2011' GROUP BY OM.Oid";
+	  r1=db.executeQuery(query);
 
+	return r1;
+	  
+  }
+  
+  public ResultSet getfun2() throws SQLException{
+	  ResultSet r1 = null;
+	  String query = "select count(A.Paperid),NM.Name from article AS A, member AS M, namemap AS NM where A.Nameid=M.Nameid and NM.Nid = A.Nameid   GROUP BY A.Nameid";
+	  r1=db.executeQuery(query);
+
+	return r1;
+	  
+  }
+  
+  public ResultSet getfun3() throws SQLException{
+	  ResultSet r1 = null;
+	  String query = "select count(distinct(A.paperid)),A.year from article AS A group by A.year";
+	  r1=db.executeQuery(query);
+
+	return r1;
+	  
+  }
+  
+  public ResultSet getfun4() throws SQLException{
+	  ResultSet r1 = null;
+	  String query = "select count(distinct(A.paperid)),OM.Orgnization,count(distinct(M2.Nameid)) from article AS A, member AS M, member AS M2, orgnizationmap AS OM where A.Nameid=M.Nameid and M.Orgid=OM.Oid and M2.Orgid=OM.Oid and A.Year='2011'and M2.Year='2011' GROUP BY OM.Oid";
+	  r1=db.executeQuery(query);
+
+	return r1;
+	  
+  }
+  
 	public ResultSet getRlt(String input){
 		
 		return db.executeQuery(input);		

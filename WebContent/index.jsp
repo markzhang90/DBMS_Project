@@ -18,6 +18,10 @@
 	function searched() {
 		var xmlhttp;
 		var findit = document.getElementById("findit").value;
+		if(findit==null||findit==""){
+			alert("please enter an keyword");
+			return false;
+		}
 		
 		var check=null;
 		if(document.getElementById("A").checked==true){
@@ -75,7 +79,19 @@
 		<!-- begin top header -->
 		<h1>Database Management Project</h1>
 	</div>
-	<!-- end top header --> </header>
+	<!-- end top header --> 
+		<div id="bottom_header" class="wrap"><!-- begin bottom header -->
+            <nav>
+                <ul id="top_nav">
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="funwithdata.jsp">Have Fun</a> </li>
+
+                </ul>
+            </nav>
+            
+
+        </div><!-- end bottom header -->
+	</header>
 	<!-- END HEADER -->
 
 	<div id="main_frame" class="wrap">

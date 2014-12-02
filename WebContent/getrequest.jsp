@@ -62,7 +62,7 @@ ResultSet getr1= null;
 
 if(check.equals("F")){
 ResultSet getr1= null;
-	findRlt = "Select P.Paper, NP.Name, C.Conference, A.Year, L.Location From article AS A, member AS M, orgnizationmap AS OM, namemap AS NP, conference AS C, papermap AS P, location AS L where P.Pid = A.Paperid and OM.Orgnization like '%"+ findit +"%' and NP.Nid=A.Nameid and A.Nameid=M.Nameid and OM.Oid=M.Orgid and C.Cid=A.Confid and A.Lid =L.Lid ";
+	findRlt = "Select distinct(P.Paper), NP.Name, C.Conference, A.Year, L.Location From article AS A, member AS M, orgnizationmap AS OM, namemap AS NP, conference AS C, papermap AS P, location AS L where P.Pid = A.Paperid and OM.Orgnization like '%"+ findit +"%' and NP.Nid=A.Nameid and A.Nameid=M.Nameid and OM.Oid=M.Orgid and C.Cid=A.Confid and A.Lid =L.Lid ";
 	findRlt = findRlt+conference;
 	response.getWriter().println("<table><tbody><tr><th>Name</th><th>Paper</th><th>Conference</th><th>Location</th><th>Year</th></tr>");	
 	 getr1 = Query.getRlt(findRlt);
